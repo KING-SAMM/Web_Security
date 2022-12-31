@@ -2,14 +2,14 @@ const express = require('express');
 const { createReadStream } = require('fs');
 const bodyParser = require('body-parser');
 
+const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // USERS database object
 const USERS = {
     alice: "password",
     bob: "hunter2"
 }
-
-const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     createReadStream('index.html').pipe(res);

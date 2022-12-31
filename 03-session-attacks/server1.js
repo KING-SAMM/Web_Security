@@ -3,16 +3,16 @@ const { createReadStream } = require('fs');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
+const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+
 // USERS database object
 const USERS = {
     alice: "password",
     bob: "hunter2"
 }
 const BALANCES = { alice: 500, bob: 100 } // Added
-
-const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
 
 app.get('/', (req, res) => {
     const username = req.cookies.username
@@ -31,7 +31,7 @@ app.post('/login', (req, res) => {
 
     if (req.body.password === password) {
         res.cookie('username', username)
-        res.send('Success!')
+        res.redirect('/') // Added
     } else {
         res.send('Fail!')
     }

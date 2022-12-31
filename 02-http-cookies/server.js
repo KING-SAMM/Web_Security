@@ -4,15 +4,15 @@ const { createReadStream } = require('fs');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
+const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+
 // USERS database object
 const USERS = {
     alice: "password",
     bob: "hunter2"
 }
-
-const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
 
 app.get('/', (req, res) => {
     // If request already contains a cookie

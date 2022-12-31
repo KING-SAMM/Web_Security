@@ -1,6 +1,7 @@
 const express = require('express');
 const { createReadStream } = require('fs');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 // USERS database object
 const USERS = {
@@ -10,9 +11,18 @@ const USERS = {
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.get('/', (req, res) => {
-    createReadStream('http-cookies/index.html').pipe(res);
+    // If request already contains a cookie
+    const username = req.cookies.username
+
+    // display a greeting with the cookie value
+    if (username) {
+        res.send(`Hi ${username}`)
+    } else {
+        createReadStream('index.html').pipe(res);
+    }
 });
 
 app.post('/login', (req, res) => {

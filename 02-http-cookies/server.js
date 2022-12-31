@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
     if (username) {
         res.send(`Hi ${username}`)
     } else {
-        createReadStream('http-cookies/index.html').pipe(res);
+        createReadStream('index.html').pipe(res);
     }
 });
 

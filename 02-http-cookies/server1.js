@@ -4,7 +4,7 @@ const { createReadStream } = require('fs');
 const app = express();
 
 app.get('/', (req, res) => {
-    createReadStream('http-cookies/index.html').pipe(res);
+    createReadStream('index.html').pipe(res);
 });
 
 app.post('/login', (req, res) => {

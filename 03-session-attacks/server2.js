@@ -12,7 +12,7 @@ app.use(cookieParser(COOKIE_SECRET));   // Modified
 
 // USERS database object
 const USERS = {
-    alice: "password",
+    alice: "passwordnew",
     bob: "hunter2"
 }
 const BALANCES = { alice: 500, bob: 100 } // Added
